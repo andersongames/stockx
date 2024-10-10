@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="/static/index.js"></script>
+
+        <title>StockX - {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top border-bottom-1 nav-divider h-80">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img width="100" src="/static/logo.jpg" alt="stockx-logo">
+                </a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav ms-auto align-items-center gap-2">
+                            <li class="nav-item">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle d-flex align-items-center gap-1 w-180" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <p class="h6 text-light m-auto w-50">{{ username }}</p>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li>
+                                            <!-- Button trigger change username modal -->
+                                            <a class="dropdown-item d-flex align-items-center p-2 pointer" data-bs-toggle="modal" data-bs-target="#change-username-modal">
+                                                <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/user--v1.png" alt="change-username" class="me-2 filter-invert-100"/>
+                                                Change username
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <!-- Button trigger change password modal -->
+                                            <a class="dropdown-item d-flex align-items-center p-2 pointer" data-bs-toggle="modal" data-bs-target="#change-password-modal">
+                                                <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/password--v1.png" alt="change-password" class="me-2 filter-invert-100"/>
+                                                Change password
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center p-2 pointer" href="/logout">
+                                                <img width="20" height="20" src="https://img.icons8.com/material-outlined/24/exit.png" alt="logout" class="me-2 filter-invert-100"/>
+                                                Log Out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <!-- Change username modal -->
+        <div class="modal fade" id="change-username-modal" tabindex="-1" aria-labelledby="change-username-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-0">
+                        <h1 class="modal-title fs-5" id="change-username-label">Change username</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column text-start">
+                        <p>Enter your new username:</p>
+                        <form id="change-username-form" action="/profile" method="post">
+                            <input autocomplete="off" class="form-control mx-auto text-center bg-secondary text-light" id="change-username" name="username" placeholder="New username" type="text">
+                        </form>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="change-username-form" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change password modal -->
+        <div class="modal fade" id="change-password-modal" tabindex="-1" aria-labelledby="change-password-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header border-0">
+                        <h1 class="modal-title fs-5" id="change-password-label">Change password</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column text-start">
+                        <p>Enter your new password:</p>
+                        <form id="change-password-form" class="d-flex flex-column gap-1" action="/profile" method="post">
+                            <input autocomplete="off" class="form-control mx-auto text-center bg-secondary text-light" id="change-password" name="password" placeholder="New password" type="password">
+                            <input class="form-control mx-auto text-center bg-secondary text-light" id="change-password-confirmation" name="confirmation" placeholder="Confirm password" type="password">
+                        </form>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="change-password-form" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert -->
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible top-0 start-50 translate-middle-x fixed-top m-2" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <main class="overflow-auto container-fluid py-5 text-center mt-80 bg-dark h-100">
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="mb-5 small bg-dark text-center text-muted">
+            Data provided by <a href="https://brapi.dev/" target="_blank">Brapi</a>
+        </footer>
+
+    </body>
+
+</html>

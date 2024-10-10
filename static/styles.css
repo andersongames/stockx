@@ -1,0 +1,137 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+/* Body cover the whole view, - 80px to compensate the nav bar height, - 21px to conpensate the footer*/
+body {
+    height: calc(100vh - 80px - 21px);
+}
+
+/* replace primary colors */
+.btn-primary {
+    color: #fff;
+    background-color: #d5b263;
+    border-color: #d5b263;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    color: #fff;
+    background-color: #d1a43f;
+    border-color: #b88e30;
+}
+.dropdown-item:active {
+    background-color: #d1a43f !important;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgb(207 178 37 / 25%) !important;
+}
+input:focus {
+    border-color: #b88e30 !important;
+}
+
+/* Margin top 80px */
+.mt-80 {
+    margin-top: 80px !important;
+}
+
+/* Width 180px */
+.w-180  {
+    width: 180px  !important;
+}
+
+/* +/- button */
+.btn-sq  {
+    min-width: 38px;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
+/* cursor pointer */
+.pointer {
+    cursor: pointer;
+}
+
+/* Height 80px */
+.h-80  {
+    height: 80px !important;
+}
+
+/* Floating button */
+.floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.btn-floating {
+    width:60px;
+    height:60px;
+}
+
+/* Remove the dropdown arrow */
+.no-caret::after {
+    display: none;
+}
+
+/* Nav element bottom border */
+.nav-divider {
+    border-bottom: 1px solid #6c757d;
+}
+
+/* Filter to invert color */
+.filter-invert-100 {
+    filter: invert(100%);
+}
+
+/* Change the placeholder color */
+input::placeholder {
+    color: #F8F9FA !important;
+}
+
+table {
+    width: 100%;
+}
+
+/* Vertical align table text */
+table th,
+table td {
+    vertical-align: middle;
+}
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Scroll table if small screen */
+@media only screen and (max-width: 670px) {
+    .overflow {
+      overflow: scroll;
+    }
+  }

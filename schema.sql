@@ -1,0 +1,14 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash TEXT NOT NULL
+);
+
+CREATE TABLE stocks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    symbol TEXT NOT NULL,
+    shares INTEGER NOT NULL,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
