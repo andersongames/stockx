@@ -1,8 +1,9 @@
-# STOCKX
-#### Video Demo: https://youtu.be/X-mkaG9ZriQ
-#### Description:
+# Final Project
+**CS50’s Introduction to Computer Science**
+
+## StockX
 StockX is a app designed for new investors navigating the Brazilian stock market (B3) who follow a strategy of maintaining an even distribution of their holdings across multiple stocks. This app provides a interface to simulate the purchase of new shares, allowing investors to visualize the impact on their portfolio before making any real investments.
-##### Key features:
+## Key features
 1. **Portfolio Overview:**
     - View a overview of your current portfolio, including the number of shares, the total value of each stock and the weight they represent in your portfolio.
 2. **Simulate New Share Purchase:**
@@ -12,36 +13,41 @@ StockX is a app designed for new investors navigating the Brazilian stock market
 
 The objective is to assist new B3 investors in enhancing their decision-making regarding portfolio allocation, optimizing investments, maintaining a well-balanced distribution across all holdings, and visualizing their overall investment strategy.
 
----
+Demo: https://youtu.be/X-mkaG9ZriQ
 
-#### Project files description:
- - **static/index.js**: File that contains the javascript responsible for updating the table when the number of shares changes:
-    - **handleSharesNumber** function: Handle the value of the shares input, performs validations to avoid invalid values, calculates new value, assigns the value to the element and returns the new value.
-    - **updateTable** function: Calls the handleSharesNumber function and based on the returned value, calculates and updates the table with new values, it is called when the increment and decrement buttons are clicked.
- - **schema.sql**: SQL code that creates the database file and tables.
- - **app.py**: Main app file, for general configuration and routes.
- - **helpers.py**: Functions that will be used several times in the project:
-    - **login_required** function: Check if there is already an active session and redirects to the login page.
-    - **quote** function: Make a request to the Brapi API to obtain data for a specific symbol.
----
+## Files content
+ - `static/index.js`: File that contains the javascript responsible for updating the table when the number of shares changes:
+    - `handleSharesNumber` function: Handle the value of the shares input, performs validations to avoid invalid values, calculates new value, assigns the value to the element and returns the new value.
+    - `updateTable` function: Calls the handleSharesNumber function and based on the returned value, calculates and updates the table with new values, it is called when the increment and decrement buttons are clicked.
+ - `schema.sql`: SQL code that creates the database file and tables.
+ - `app.py`: Main app file, for general configuration and routes.
+ - `helpers.py`: Functions that will be used several times in the project:
+    - `login_required` function: Check if there is already an active session and redirects to the login page.
+    - `quote` function: Make a request to the Brapi API to obtain data for a specific symbol.
 
-#### Create database and tables:
-`sqlite3 database.db ".read schema.sql"`
+## Requirements
+- [Python](https://www.python.org/)
+- [Pip](https://pypi.org/project/pip/)
 
-#### Some B3 symbols for testing:
+## How to run
+- `pip install -r requirements.txt`
+- `flask run -h localhost -p 8000`
+
+## Commands
+`sqlite3 database.db ".read schema.sql"` -> Create database and tables
+
+## B3 stock symbols for testing:
 - PETR4 (Petrobras)
 - VALE3 (Vale)
 - ITUB4 (Itaú Unibanco)
 - BBDC4 (Bradesco)
 - BBAS3 (Banco do Brasil)
 
----
-
-### For development purposes:
+## Colors:
 - Primary color: #D5B263
 - Background color: ##212529
 
-#### General guidelines:
+## General guidelines (for development):
 - [x] Register
     - [x] Usernme
         - [x] Unique
